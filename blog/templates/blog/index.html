@@ -1,6 +1,52 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block css_file %} 
+<link rel="stylesheet" type="text/css" href="{% static 'blog/index.css' %}">
+{% endblock %}
 
 {% block page_title %} Blog by Mateusz Hyla - Home Page{% endblock %}
 {% block content %}
-    <h1>Home Page</h1>
+    <header id="main-navigation">
+        <h1><a href="">Mateusz's Blog</a></h1>
+        <nav>
+            <a href="">All Posts</a>
+        </nav>
+    </header>
+    
+    <section id="welcome">
+        <header>
+            <img src="{% static 'blog/images/mateusz.png' %}" alt="Mateusz - The Author of This Blog.">
+            <h2>MATEUSZ'S BLOG</h2>
+        </header>
+        <p>Hi, I am Mateusz and I love to blog about tech and the world.</p>
+    </section>
+    <section id="latest-posts">
+        <h2>My Latests Thoughts</h2>
+        <ul>
+            <li>
+                <article class="post">
+                    <a href="">
+                        <img src="{% static 'blog/images/mountains.jpg' %}" alt="Mountain Hiking.">
+                        <div class="post__content">
+                            <h3>Mountain Hiking</h3>
+                            <p>
+                                There is nothing like the views when hiking in the mountains!
+                                And I wasn't even prepared for what happened while I was enjoying the view!
+                            </p>
+                        </div>
+                    </a>
+                </article>
+            </li>
+        </ul>
+    </section>
+    <section id="about">
+        <h2>What I Do</h2>
+        <p>
+            I love programming, and helping others and I enjoy exploring new technologies in general.
+        </p>
+        <p>
+            My goal is to grow as a developer - and if I could help you do the same, 
+            I would be very happy!
+        </p>
+    </section>
 {% endblock %}
