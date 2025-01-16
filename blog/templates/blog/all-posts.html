@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css_file %} 
+<link rel="stylesheet" type="text/css" href="{% static 'blog/post.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/all-posts.css' %}">
+{% endblock %}
+
+{% block page_title %} Blog by Mateusz Hyla - All Posts{% endblock %}
+{% block content %}
+<section id="all-posts">
+    <h2>My Collected Posts</h2>
+    <ul>
+        {% include 'blog/includes/post.html' %}
+        {% include 'blog/includes/post.html' %}
+        {% include 'blog/includes/post.html' %}
+        {% include 'blog/includes/post.html' %}
+        {% include 'blog/includes/post.html' %}
+        {% include 'blog/includes/post.html' %}
+    </ul>
+</section>
+{% endblock %}

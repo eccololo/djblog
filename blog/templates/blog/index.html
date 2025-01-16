@@ -1,17 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block css_file %} 
+<link rel="stylesheet" type="text/css" href="{% static 'blog/post.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'blog/index.css' %}">
 {% endblock %}
 
 {% block page_title %} Blog by Mateusz Hyla - Home Page{% endblock %}
 {% block content %}
-    <header id="main-navigation">
-        <h1><a href="">Mateusz's Blog</a></h1>
-        <nav>
-            <a href="">All Posts</a>
-        </nav>
-    </header>
+
     
     <section id="welcome">
         <header>
@@ -23,20 +19,7 @@
     <section id="latest-posts">
         <h2>My Latests Thoughts</h2>
         <ul>
-            <li>
-                <article class="post">
-                    <a href="">
-                        <img src="{% static 'blog/images/mountains.jpg' %}" alt="Mountain Hiking.">
-                        <div class="post__content">
-                            <h3>Mountain Hiking</h3>
-                            <p>
-                                There is nothing like the views when hiking in the mountains!
-                                And I wasn't even prepared for what happened while I was enjoying the view!
-                            </p>
-                        </div>
-                    </a>
-                </article>
-            </li>
+           {% include 'blog/includes/post.html' %}
         </ul>
     </section>
     <section id="about">

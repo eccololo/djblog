@@ -12,7 +12,7 @@ def starting_page(request):
 
 def posts(request):
     """View for view all posts list page."""
-    return HttpResponse("ALl posts list.")
+    return render(request, "blog/all-posts.html")
 
 
 def post_details(request, slug):
