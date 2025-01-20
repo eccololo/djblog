@@ -3,7 +3,7 @@ from datetime import date
 
 
 # Dumy data
-posts = [
+all_posts = [
     {
         'slug': 'hike-in-the-mountains',
         'image': 'mountains.jpg',
@@ -79,19 +79,34 @@ posts = [
 ]
 
 
+def get_date(post):
+    return post['date']
+
 def starting_page(request):
     """View for view all posts list page."""
+    sorted_posts = sorted(all_posts, key=get_date)
+    latest_posts = sorted_posts[-3:]
     context = {
-
+        "posts": latest_posts
     }
     return render(request, "blog/index.html", context)
 
 def posts(request):
     """View for view all posts list page."""
-    return render(request, "blog/all-posts.html")
+
+    context = {
+        "all_posts": all_posts
+    }
+
+    return render(request, "blog/all-posts.html",  context)
 
 
 def post_details(request, slug):
     """View for view all posts list page."""
-    return render(request, "blog/post-detail.html")
+    post = next(post for post in all_posts if post["slug"] == slug)
+    context = {
+        "post": post
+    }
+
+    return render(request, "blog/post-detail.html", context)
 
