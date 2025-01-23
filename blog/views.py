@@ -1,14 +1,6 @@
-from django.shortcuts import render
-from datetime import date
+from django.shortcuts import render, get_object_or_404
 from .models import Post
 
-
-# Dumy data
-all_posts = []
-
-
-def get_date(post):
-    return post['date']
 
 def starting_page(request):
     """View for view all posts list page."""
@@ -20,7 +12,7 @@ def starting_page(request):
 
 def posts(request):
     """View for view all posts list page."""
-
+    all_posts = Post.objects.all().order_by("-date")
     context = {
         "all_posts": all_posts
     }
@@ -30,9 +22,10 @@ def posts(request):
 
 def post_details(request, slug):
     """View for view all posts list page."""
-    post = next(post for post in all_posts if post["slug"] == slug)
+    post = get_object_or_404(Post, slug=slug)
     context = {
-        "post": post
+        "post": post,
+        "post_tags": post.tags.all()
     }
 
     return render(request, "blog/post-detail.html", context)
