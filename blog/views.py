@@ -1,14 +1,20 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView
 from .models import Post
 
 
-def starting_page(request):
-    """View for view all posts list page."""
-    latest_posts = Post.objects.all().order_by("-date")[:3]
-    context = {
-        "posts": latest_posts
-    }
-    return render(request, "blog/index.html", context)
+class StartingPageView(ListView):
+
+    template_name = "blog/index.html"
+    model = Post
+    ordering = ["-date"]
+    context_object_name = "posts"
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        data = queryset[:3]
+        return data
+    
 
 def posts(request):
     """View for view all posts list page."""
