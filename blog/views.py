@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Post
 
 
@@ -16,23 +16,20 @@ class StartingPageView(ListView):
         return data
     
 
-def posts(request):
-    """View for view all posts list page."""
-    all_posts = Post.objects.all().order_by("-date")
-    context = {
-        "all_posts": all_posts
-    }
-
-    return render(request, "blog/all-posts.html",  context)
+class AllPostsView(ListView):
+    template_name = "blog/all-posts.html"
+    model = Post
+    ordering = ["-date"]
+    context_object_name = "all_posts"
 
 
-def post_details(request, slug):
-    """View for view all posts list page."""
-    post = get_object_or_404(Post, slug=slug)
-    context = {
-        "post": post,
-        "post_tags": post.tags.all()
-    }
 
-    return render(request, "blog/post-detail.html", context)
+class SinglePostView(DetailView):
 
+    template_name = "blog/post-detail.html"
+    model = Post
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["post_tags"] = self.object.tags.all()
+        return context
