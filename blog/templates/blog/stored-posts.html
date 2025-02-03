@@ -2,7 +2,7 @@
 {% load static %} 
 
 {% block css_file %}
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'blog/post-detail.css' %}" /> -->
+<link rel="stylesheet" type="text/css" href="{% static 'blog/stored-posts.css' %}" />
 {% endblock %} 
 
 {% block page_title %} 
@@ -10,7 +10,7 @@ Blog by Mateusz Hyla - Stored Posts
 {% endblock %} 
 
 {% block content %}
-    <section>
+    <section id="stored-posts">
         {% if not has_posts %}
             <p>You didn't save any posts for later!</p>
         {% endif %}
